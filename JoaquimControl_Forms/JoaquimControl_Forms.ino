@@ -9,8 +9,8 @@ WiFiClientSecure client;
 
 //dados do wifi
 
-const char* rede = "rede";
-const char* senha = "senha";
+const char* ssid = "sangsunga";
+const char* password = "ibis2211";
 
 void setup() {
   // Inicialização do ESP32
@@ -38,6 +38,8 @@ void loop() {
       paraEnviar += "="
       paraEnviar += // Receber ID do leitor
       paraEnviar += "&"
+      paraEnviar += chaveTime;
+      paraEnviar += "="
       paraEnviar += // Receber horário
       paraEnviar += "&submit=Submit HTTP/1.1";
       client.println(paraEnviar);
