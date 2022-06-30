@@ -11,6 +11,7 @@ WiFiClientSecure client;
 
 const char* ssid = "Sangsunga";
 const char* password = "ibis2211";
+int i = 0;
 
 void setup() {
   // Inicialização do ESP32
@@ -33,14 +34,14 @@ void loop() {
    if (client.connect("docs.google.com", 443)) {
       String paraEnviar = "GET /forms/d/e/";
       paraEnviar += chaveForms;
-//      paraEnviar += "/formsResponse?"
+      paraEnviar += "/formsResponse?";
       paraEnviar += chaveID;
       paraEnviar += "=";
-//      paraEnviar += ; //Receber ID do leitor;
+      paraEnviar += "11609177"; //Receber ID do leitor;
       paraEnviar += "&";
       paraEnviar += chaveTime;
       paraEnviar += "=";
-//      paraEnviar += ;// Receber horário
+      paraEnviar += "10:30:20";// Receber horário
       paraEnviar += "&submit=Submit HTTP/1.1";
       client.println(paraEnviar);
       client.println("Host: docs.google.com");
@@ -48,6 +49,15 @@ void loop() {
       client.stop();
       Serial.print("Dados enviados");
    }  else  {
-      Serial.print("Erro ao conectar");
+       Serial.println("Erro ao conectar");
+       Serial.println("Tentando reconectar");
+       
+   }while not (client.connect("docs.google.com", 443) {   // ver issooooooooooooooo
+       
+       Serial.print(".");
+       delay(500); 
+        
+        }
    }
+}
 }
